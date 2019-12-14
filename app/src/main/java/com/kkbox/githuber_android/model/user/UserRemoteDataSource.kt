@@ -14,13 +14,27 @@ import retrofit2.Response
 class UserRemoteDataSource(private val userService: UserService, private val gson: Gson): UserDataSource {
     override val apiResponse: SingleLiveEvent<ApiResponse> = SingleLiveEvent()
 
+    private var searchUserCall: Call<Collection<User>>? = null
+
     override fun searchUsers(query: String, page: Int, perPage: Int) {
-        userService.searchUsers(query, page, perPage).enqueue(getRetrofit2Callback<Collection<User>>())
+        searchUserCall?.let {
+            if (it.isExecuted && !it.isCanceled) {
+                it.cancel()
+            }
+        }
+
+        userService.searchUsers(query, page, perPage).also {
+            searchUserCall = it
+            it.enqueue(getRetrofit2Callback<Collection<User>>())
+        }
     }
 
     private fun <ResultType> getRetrofit2Callback() = object : retrofit2.Callback<ResultType>{
         override fun onFailure(call: Call<ResultType>, t: Throwable) {
-            setApiResponse(ApiResponse.Failed(Error.ThrowableError(t)))
+            if (!call.isCanceled) {
+                // Failure but not cause by cancelling the request.
+                setApiResponse(ApiResponse.Failed(Error.ThrowableError(t)))
+            }
         }
 
         override fun onResponse(call: Call<ResultType>, response: Response<ResultType>?) {

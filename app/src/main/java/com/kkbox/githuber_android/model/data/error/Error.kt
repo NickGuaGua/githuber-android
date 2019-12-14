@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 
 sealed class Error(val msg: String) {
-    data class ThrowableError(val throwable: Throwable): Error(throwable.message ?: "")
+    data class ThrowableError(val throwable: Throwable): Error(throwable.message ?: "Something went wrong.")
 
     data class GithubApiError(
-        @SerializedName("message") val message: String,
-        @SerializedName("documentation_url") val documentationUrl: String
-    ): Error(message)
+        @SerializedName("message") val message: String?,
+        @SerializedName("documentation_url") val documentationUrl: String?
+    ): Error(message ?: "Something went wrong.")
 }
