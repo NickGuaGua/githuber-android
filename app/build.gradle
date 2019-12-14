@@ -32,4 +32,17 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+
+    // Lifecycle
+    implementation "android.arch.lifecycle:extensions:1.1.1"
 }
