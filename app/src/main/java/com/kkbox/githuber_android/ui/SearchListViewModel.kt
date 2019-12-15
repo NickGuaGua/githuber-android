@@ -46,6 +46,8 @@ class SearchListViewModel(private val repository: UserRepository) : ViewModel() 
     }
 
     fun searchUsers(query: String, page: Int = 1) {
+        if (query.isBlank()) return
+
         if (page == 1) {
             setState(SearchListViewState.ListLoading)
         }
