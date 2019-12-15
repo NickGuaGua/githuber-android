@@ -2,7 +2,7 @@ package com.kkbox.githuber_android.di
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.google.gson.GsonBuilder
+import com.google.gson.Gson
 import com.kkbox.githuber_android.model.api.UserService
 import com.kkbox.githuber_android.model.common.ApiBuilder
 import com.kkbox.githuber_android.model.user.UserRemoteDataSource
@@ -12,7 +12,7 @@ import com.kkbox.githuber_android.ui.SearchListViewModelFactory
 
 object InjectUtil {
 
-    private val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+    private val gson = Gson()
 
     fun provideSearchListViewModel(fragment: Fragment): SearchListViewModel {
         val factory = SearchListViewModelFactory(provideUserRepository())
