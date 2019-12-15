@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.kkbox.githuber_android"
+        applicationId "com.guagua.githuber_android"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
