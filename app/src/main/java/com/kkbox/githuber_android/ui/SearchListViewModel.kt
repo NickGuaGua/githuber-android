@@ -33,7 +33,11 @@ class SearchListViewModel(private val repository: UserRepository) : ViewModel() 
 
             setState(SearchListViewState.DataSetChanged(collection, changeType))
         } else if (apiResponse is ApiResponse.Failed) {
-            setState(SearchListViewState.Alert(apiResponse.error.msg ?: ""))
+            setState(
+                SearchListViewState.Alert(
+                    apiResponse.error.getErrorMessage() ?: "Something went wrong."
+                )
+            )
         }
     }
 

@@ -10,7 +10,7 @@ sealed class ApiResponse {
     override fun toString(): String {
         return when(this) {
             is Success<*> -> "Success[data=$data]"
-            is Failed -> "Error[error=${error.msg}]"
+            is Failed -> "Error[error=${error.getErrorMessage()}]"
         }
     }
 }

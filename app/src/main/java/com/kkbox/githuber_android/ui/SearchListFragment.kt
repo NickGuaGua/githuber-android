@@ -1,5 +1,6 @@
 package com.kkbox.githuber_android.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -49,6 +50,8 @@ class SearchListFragment : Fragment() {
                 }
             }
             is SearchListViewState.Alert -> {
+                onListLoaded()
+                showAlert(state.message)
                 searchAdapter.cancelLoadMore()
             }
         }
@@ -100,5 +103,12 @@ class SearchListFragment : Fragment() {
 
     private fun onListLoaded() {
         loadingView.visibility = View.GONE
+    }
+
+    private fun showAlert(message: String) {
+        AlertDialog.Builder(context).apply {
+            setMessage(message)
+            setPositiveButton(context.getString(R.string.ok)) { dialog, _ -> }
+        }.show()
     }
 }
