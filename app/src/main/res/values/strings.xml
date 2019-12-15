@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">githuber-android</string>
+
+    <string name="search_user_hint">Search users, ex: tom</string>
+    <string name="ok">OK</string>
+    <string name="empty_list_hint">No results found</string>
 </resources>
